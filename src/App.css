@@ -3,6 +3,31 @@
   display: flex;
   padding: 30px;
 }
-.App div{
-  margin-right: 50px;
+.App li{
+  text-align:left;
+  display: grid;
+  grid-template-columns: 1fr 1fr 0fr;
+  margin: 5px 0;
+}
+.App li button{
+  text-align:end;
+  justify-content: space-between;
+}
+.App ul{
+  padding: 0;
+}
+.error{
+  border: red 1px solid;
+}
+.error-massage{
+  color: red;
+  font-size: 14px;
+  text-align: left;
+}
+.active-filter{
+  background-color: rgb(121, 121, 204);
+}
+.is-done{
+  color: rgb(0, 0, 0);
+  opacity: 0.4;
 }
