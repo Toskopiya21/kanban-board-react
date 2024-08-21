@@ -1,5 +1,6 @@
+import { Button } from "@mui/material";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
-
+import "./addItemForm.scss";
 export type AddItemFormPropsType = {
   addItem: (title: string) => void;
   //   id: string;
@@ -35,7 +36,9 @@ export function AddItemForm(props: AddItemFormPropsType) {
         onKeyDown={handleKeyPress}
         className={error ? "error" : ""}
       />
-      <button onClick={addItem}>+</button>
+      <Button onClick={addItem} variant="contained" className="newItemFormBtn">
+        +
+      </Button>
       {error && <div className="error-massage">{error}</div>}
     </div>
   );
