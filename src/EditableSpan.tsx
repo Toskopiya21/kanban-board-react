@@ -1,3 +1,4 @@
+import { Input, TextField } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 
 export type EditableSpanPropsType = {
@@ -23,9 +24,8 @@ export function EditableSpan(props: EditableSpanPropsType) {
   };
 
   return editMode ? (
-    <input
-      //   type="text"
-      value={title}
+    <Input
+      defaultValue={title}
       onChange={editTitle}
       onBlur={activateViewMode}
       onKeyDown={(e) => (e.key === "Enter" ? activateViewMode() : 0)}

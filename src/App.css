@@ -1,7 +1,9 @@
 .App {
-  text-align: center;
-  display: flex;
-  padding: 30px;
+  /* text-align: center; */
+  /* display: flex;  */
+  /* flex-direction: column; */
+  padding: 50px 100px;  
+  font-family: "Montserrat";
 }
 .App li{
   text-align:left;
@@ -30,4 +32,8 @@
 .is-done{
   color: rgb(0, 0, 0);
   opacity: 0.4;
+}
+h3{
+  font-weight: 600;
+  margin: 0;
 }

@@ -3,6 +3,7 @@ import "./App.css";
 import { TaskType, TodoList } from "./TodoList";
 import { v1 } from "uuid";
 import { AddItemForm } from "./AddItemForm";
+import Logo from "./Logo";
 
 export type FilterValuesType = "all" | "completed" | "active";
 type TodolistType = {
@@ -17,25 +18,24 @@ type TaskStateType = {
 function App() {
   let todoListId1 = v1();
   let todoListId2 = v1();
+  let todoListId3 = v1();
+  let todoListId4 = v1();
 
   let [todolists, setTodolists] = useState<Array<TodolistType>>([
-    { id: todoListId1, title: "Что купить", filter: "active" },
-    { id: todoListId2, title: "Что изучить", filter: "completed" },
+    { id: todoListId1, title: "Задачи", filter: "all" },
+    { id: todoListId2, title: "В работе", filter: "all" },
+    { id: todoListId3, title: "Ожидает проверки", filter: "all" },
+    { id: todoListId4, title: "Готово", filter: "all" },
   ]);
 
   let [tasksObj, settasksObj] = useState<TaskStateType>({
     [todoListId1]: [
-      { id: v1(), title: "Сырки", isDone: false },
-      { id: v1(), title: "Конфеты", isDone: false },
-      { id: v1(), title: "Чай", isDone: false },
-      { id: v1(), title: "Авокадо", isDone: false },
-      { id: v1(), title: "Зелень", isDone: false },
-      { id: v1(), title: "Сыр", isDone: false },
+      { id: v1(), title: "Добавить прелоадер", isDone: false },
+      { id: v1(), title: "Выполнить редизайн проекта", isDone: false },
     ],
-    [todoListId2]: [
-      { id: v1(), title: "Redux", isDone: false },
-      { id: v1(), title: "JS", isDone: true },
-    ],
+    [todoListId2]: [],
+    [todoListId3]: [],
+    [todoListId4]: [],
   });
   function changeTodoListTitle(newtitle: string, todolistId: string) {
     let todolist = todolists.find((item) => item.id == todolistId);
@@ -108,40 +108,45 @@ function App() {
       title: title,
       filter: "all",
     };
-    setTodolists([todolist, ...todolists]);
+    setTodolists([...todolists, todolist]);
     settasksObj({ ...tasksObj, [todolist.id]: [] });
   }
 
   return (
     <div className="App">
-      <AddItemForm addItem={addTodolist} />
+      <Logo />
+      <section>
+        {/* <AddItemForm addItem={addTodolist} /> */}
+        <div className="todoList">
+          {todolists.map((item) => {
+            let tasksObjFilted = tasksObj[item.id];
 
-      {todolists.map((item) => {
-        let tasksObjFilted = tasksObj[item.id];
-
-        if (item.filter === "active") {
-          tasksObjFilted = tasksObjFilted.filter((i) => i.isDone === false);
-        }
-        if (item.filter === "completed") {
-          tasksObjFilted = tasksObjFilted.filter((i) => i.isDone === true);
-        }
-        return (
-          <TodoList
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            tasks={tasksObjFilted}
-            removeTask={removeTask}
-            changeFilter={changeFilter}
-            addTask={addTask}
-            changeStatus={changeStatus}
-            filter={item.filter}
-            removeTodoList={removeTodoList}
-            changeTaskTitle={changeTaskTitle}
-            changeTodoListTitle={changeTodoListTitle}
-          />
-        );
-      })}
+            if (item.filter === "active") {
+              tasksObjFilted = tasksObjFilted.filter((i) => i.isDone === false);
+            }
+            if (item.filter === "completed") {
+              tasksObjFilted = tasksObjFilted.filter((i) => i.isDone === true);
+            }
+            return (
+              <TodoList
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                tasks={tasksObjFilted}
+                removeTask={removeTask}
+                changeFilter={changeFilter}
+                addTask={addTask}
+                changeStatus={changeStatus}
+                filter={item.filter}
+                removeTodoList={removeTodoList}
+                changeTaskTitle={changeTaskTitle}
+                changeTodoListTitle={changeTodoListTitle}
+              />
+            );
+          })}
+          <AddItemForm addItem={addTodolist} />
+        </div>
+      </section>
     </div>
   );
 }

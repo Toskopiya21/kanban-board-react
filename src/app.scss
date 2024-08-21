@@ -1,0 +1,32 @@
+.newItemFormBtn {
+    border-radius: 100px;
+    text-transform: none;
+    color: #6C7AF9;
+    font-weight: 600;
+    font-size: 15px;
+    font-family: "Montserrat";
+}
+
+.header {
+    font-size: 22px;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+.logoTitle{
+    position: relative;
+    font-weight: 700;
+    img {
+        position: absolute;
+        top: -4px;
+        left: 25px;
+    }
+}
+header {
+    // width: 100%;
+    // img {
+    //     position: absolute;
+    //     top: 0px;
+    //     left: 20px;
+    // }
+}
+

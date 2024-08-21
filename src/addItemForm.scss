@@ -1,5 +1,34 @@
 .newItemFormBtn{
     border-radius: 100px;
-    color:rgb(255, 0, 0);
-    
+    text-transform: none;
+    color: #6C7AF9;
+    font-weight: 600;
+    font-size: 15px;
+    font-family: "Montserrat";
+}
+.add{
+    display: flex;
+}
+.focutAddTaskTitle
+{   
+    // opacity: 0;
+    transition: opacity 0.5s ease;
+    // transition: 2s;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 20px 40px  40px  8px;
+    box-shadow: 2px 1px 10px rgba(107, 147, 249, 0.25);
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 10px;
+    align-items:flex-start;
+    margin: 15px 0;
+    width: 100%;
+
+
+    .active {
+        opacity: 1; 
+      }
 }

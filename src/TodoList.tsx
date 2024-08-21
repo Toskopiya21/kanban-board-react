@@ -5,6 +5,7 @@ import { AddItemForm } from "./AddItemForm";
 import { EditableSpan } from "./EditableSpan";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import "./todoList.scss";
 
 export type TaskType = {
   id: string;
@@ -45,7 +46,7 @@ export function TodoList(props: PropsType) {
     props.changeTodoListTitle(newTitle, props.id);
   };
   return (
-    <div>
+    <div className="todoBlock">
       {/* <AddItemForm addTask={props.addTask} id={props.id} /> */}
       {/* <button onClick={onremoveTodoList}>x</button> */}
       <h3>
@@ -57,7 +58,7 @@ export function TodoList(props: PropsType) {
         </IconButton>
       </h3>
       <AddItemForm addItem={addTask} />
-      <ul>
+      <ul className="todoItem">
         {props.tasks.map((item) => {
           const onRemoveHandler = () => props.removeTask(item.id, props.id);
           const onCheckedStatusHandler = (e: ChangeEvent<HTMLInputElement>) =>
@@ -68,22 +69,24 @@ export function TodoList(props: PropsType) {
 
           return (
             <li key={item.id}>
-              <input
-                type="checkbox"
-                onChange={onCheckedStatusHandler}
-                checked={item.isDone}
-                className={item.isDone ? "is-done" : ""}
-              />
-              <span
-                onChange={onCheckedStatusHandler}
-                className={item.isDone ? "is-done" : ""}
-              >
-                {/* {item.title} */}
-                <EditableSpan
-                  title={item.title}
-                  onChange={onCheckedTitleHandler}
+              <div className="itemCheckbox">
+                <input
+                  type="checkbox"
+                  onChange={onCheckedStatusHandler}
+                  checked={item.isDone}
+                  className={item.isDone ? "is-done" : ""}
                 />
-              </span>
+                <span
+                  onChange={onCheckedStatusHandler}
+                  className={item.isDone ? "is-done" : ""}
+                >
+                  <EditableSpan
+                    title={item.title}
+                    onChange={onCheckedTitleHandler}
+                  />
+                </span>
+              </div>
+
               <IconButton aria-label="delete" size="small">
                 <DeleteIcon onClick={onRemoveHandler} fontSize="inherit" />
               </IconButton>
@@ -91,7 +94,7 @@ export function TodoList(props: PropsType) {
           );
         })}
       </ul>
-      <div>
+      {/* <div>
         <button
           onClick={onAllClickHandler}
           className={props.filter === "all" ? "active-filter" : ""}
@@ -110,7 +113,7 @@ export function TodoList(props: PropsType) {
         >
           Completed
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
