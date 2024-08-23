@@ -1,13 +1,20 @@
 .newItemFormBtn{
     border-radius: 100px;
-    text-transform: none;
+    text-transform:lowercase;
     color: #6C7AF9;
     font-weight: 600;
     font-size: 15px;
     font-family: "Montserrat";
+    white-space: nowrap;
 }
 .add{
     display: flex;
+    button{
+    text-transform:none;
+    color: #6C7AF9;
+    padding: 0;
+
+    }
 }
 .focutAddTaskTitle
 {   
@@ -31,4 +38,9 @@
     .active {
         opacity: 1; 
       }
+
+}
+.titleInput{
+    width: 100%;
+    width: 300px;
 }

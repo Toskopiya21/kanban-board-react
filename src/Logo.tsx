@@ -1,5 +1,5 @@
 import React from "react";
-import "./app.scss";
+import "./styles/app.scss";
 import logoCheckbox from "./assets/logoCheckbox.svg";
 
 export default function Logo() {

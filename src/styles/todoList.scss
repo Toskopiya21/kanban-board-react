@@ -1,35 +1,46 @@
-.todoItem li{
+.todoItem li {
+    // border-left: solid;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
-    padding: 20px 40px  40px  8px;
+    padding: 20px 40px 40px 8px;
     box-shadow: 2px 1px 10px rgba(107, 147, 249, 0.25);
     font-size: 15px;
     font-weight: 500;
     display: flex;
     justify-content: space-between;
     column-gap: 10px;
-    align-items:flex-start;
+    align-items: flex-start;
     margin: 15px 0;
-} 
+}
 
-.todoBlock{
+.todoBlock {
     background-color: #F4F7FF;
     padding: 20px;
     border-radius: 20px;
-    min-width: 300px;
-    border-top: solid 7px #6C7AF9;
+    min-width: 350px;
+    max-width: 350px;
+    // border-top: solid 7px #6C7AF9 ;
 }
-.itemCheckbox{
+
+.itemCheckbox {
+    overflow-wrap: break-word;
+    word-break: break-all;
     display: flex;
     column-gap: 5px;
     align-items: flex-start;
-    span{
+
+    span {
         font-size: 15px;
         font-family: "Montserrat";
     }
 }
-.todoList{
+
+.todoList {
     display: flex;
     align-items: flex-start;
     column-gap: 40px;
+
+    // > :last-child {
+    //     align-self: center;
+    // }
 }

@@ -2,8 +2,10 @@
   /* text-align: center; */
   /* display: flex;  */
   /* flex-direction: column; */
-  padding: 50px 100px;  
+  padding: 0 100px;  
   font-family: "Montserrat";
+  /* width: 100vw; */
+  /* height: 100vh; */
 }
 .App li{
   text-align:left;
@@ -33,7 +35,14 @@
   color: rgb(0, 0, 0);
   opacity: 0.4;
 }
-h3{
+.todoBlock__title{
+  font-size: 20px;
   font-weight: 600;
   margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.fab {
+  background-color: white;
+  color: brown;
 }

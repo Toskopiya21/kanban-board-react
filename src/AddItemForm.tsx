@@ -1,10 +1,13 @@
-import { Button, Input } from "@mui/material";
-import { ChangeEvent, KeyboardEvent, useState } from "react";
-import "./app.scss";
-import "./addItemForm.scss";
+import { Button, Fab, Input } from "@mui/material";
+import { ChangeEvent, FocusEvent, KeyboardEvent, useState } from "react";
+import "./styles/app.scss";
+import "./styles/addItemForm.scss";
+import AddIcon from "@mui/icons-material/Add";
 
 export type AddItemFormPropsType = {
   addItem: (title: string) => void;
+  title: string;
+  // children: React.ReactNode;
   // changeTaskTitle: (
   //   taskId: string,
   //   newTitle: string,
@@ -31,13 +34,26 @@ export function AddItemForm(props: AddItemFormPropsType) {
 
     if (e.ctrlKey && e.key === "Enter") {
       addItem();
+      setTextField(false);
     }
+  };
+  const handleOnBlur = (e: FocusEvent<HTMLDivElement, Element>) => {
+    setError(null);
+    // console.log(e.target.value);
+    const value = (e.target as HTMLInputElement).value;
+    if (value) addItem();
+    setTextField(false);
+
+    // if (e.ctrlKey && e.key === "Enter") {
+    //   addItem();
+    // }
   };
   let [error, setError] = useState<string | null>(null);
   let [textField, setTextField] = useState<boolean>(false);
   const addItemNew = () => {
     setTextField(true);
   };
+
   return (
     <div className="add">
       {/* <div>
@@ -53,20 +69,25 @@ export function AddItemForm(props: AddItemFormPropsType) {
       {/* <Button className="newItemFormBtn" onClick={addItem} variant="text">
         Add
       </Button> */}
+
       {textField ? (
         <div
-          className="focutAddTaskTitle .active"
-          onBlur={() => {
-            setTextField(false);
-          }}
-          onKeyDown={(e) => (e.key === "Enter" ? setTextField(false) : 0)}
+          className="focutAddTaskTitle"
+          onBlur={handleOnBlur}
+          onChange={onChangeHandler}
+          onKeyDown={handleKeyPress}
         >
-          <Input autoFocus />
+          <Input autoFocus multiline className="titleInput" />
         </div>
       ) : (
         <Button className="newItemFormBtn" onClick={addItemNew} variant="text">
-          + Добавить задачу
+          {props.title}
         </Button>
+
+        // <Fab color="secondary" aria-label="add">
+        //   <AddIcon />
+        // </Fab>
+        // <div onClick={addItemNew}>{props.title}</div>
       )}
     </div>
   );

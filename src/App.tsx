@@ -1,9 +1,11 @@
 import { useState } from "react";
-import "./App.css";
+import "./styles/App.css";
 import { TaskType, TodoList } from "./TodoList";
 import { v1 } from "uuid";
 import { AddItemForm } from "./AddItemForm";
 import Logo from "./Logo";
+import { Fab } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 
 export type FilterValuesType = "all" | "completed" | "active";
 type TodolistType = {
@@ -144,7 +146,11 @@ function App() {
               />
             );
           })}
-          <AddItemForm addItem={addTodolist} />
+          <AddItemForm addItem={addTodolist} title="+ Создать новую колонку">
+            {/* <Fab aria-label="add" className="fab" color="secondary">
+              <AddIcon />
+            </Fab> */}
+          </AddItemForm>
         </div>
       </section>
     </div>
