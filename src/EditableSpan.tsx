@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 export type EditableSpanPropsType = {
   title: string;
   onChange: (newValue: string) => void;
+  edit: boolean;
 };
 
 export function EditableSpan(props: EditableSpanPropsType) {
@@ -23,7 +24,7 @@ export function EditableSpan(props: EditableSpanPropsType) {
     setTitle(e.target.value);
   };
 
-  return editMode ? (
+  return editMode || props.edit ? (
     <Input
       defaultValue={title}
       onChange={editTitle}

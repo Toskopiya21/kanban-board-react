@@ -72,7 +72,8 @@ export function AddItemForm(props: AddItemFormPropsType) {
 
       {textField ? (
         <div
-          className="focutAddTaskTitle"
+          // className="focutAddTaskTitle"
+          className="todoBlock"
           onBlur={handleOnBlur}
           onChange={onChangeHandler}
           onKeyDown={handleKeyPress}

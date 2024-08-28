@@ -4,11 +4,9 @@ import { TaskType, TodoList } from "./TodoList";
 import { v1 } from "uuid";
 import { AddItemForm } from "./AddItemForm";
 import Logo from "./Logo";
-import { Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 
 export type FilterValuesType = "all" | "completed" | "active";
-type TodolistType = {
+export type TodolistType = {
   id: string;
   title: string;
   filter: FilterValuesType;
@@ -39,21 +37,7 @@ function App() {
     [todoListId3]: [],
     [todoListId4]: [],
   });
-  function changeTodoListTitle(newtitle: string, todolistId: string) {
-    let todolist = todolists.find((item) => item.id == todolistId);
-    if (todolist) {
-      todolist.title = newtitle;
-      setTodolists([...todolists]);
-    }
-  }
 
-  function changeFilter(value: FilterValuesType, todolistId: string) {
-    let todolist = todolists.find((item) => item.id == todolistId);
-    if (todolist) {
-      todolist.filter = value;
-      setTodolists([...todolists]);
-    }
-  }
   function changeStatus(
     taskId: string,
     changeIsDone: boolean,
@@ -113,7 +97,21 @@ function App() {
     setTodolists([...todolists, todolist]);
     settasksObj({ ...tasksObj, [todolist.id]: [] });
   }
-
+  function changeTodoListTitle(newtitle: string, todolistId: string) {
+    let todolist = todolists.find((item) => item.id == todolistId);
+    if (todolist) {
+      todolist.title = newtitle;
+      setTodolists([...todolists]);
+    }
+  }
+  // убрать
+  // function changeFilter(value: FilterValuesType, todolistId: string) {
+  //   let todolist = todolists.find((item) => item.id == todolistId);
+  //   if (todolist) {
+  //     todolist.filter = value;
+  //     setTodolists([...todolists]);
+  //   }
+  // }
   return (
     <div className="App">
       <Logo />
@@ -136,21 +134,20 @@ function App() {
                 title={item.title}
                 tasks={tasksObjFilted}
                 removeTask={removeTask}
-                changeFilter={changeFilter}
+                // changeFilter={changeFilter}
                 addTask={addTask}
                 changeStatus={changeStatus}
-                filter={item.filter}
+                // filter={item.filter}
                 removeTodoList={removeTodoList}
                 changeTaskTitle={changeTaskTitle}
                 changeTodoListTitle={changeTodoListTitle}
               />
             );
           })}
-          <AddItemForm addItem={addTodolist} title="+ Создать новую колонку">
-            {/* <Fab aria-label="add" className="fab" color="secondary">
-              <AddIcon />
-            </Fab> */}
-          </AddItemForm>
+          <AddItemForm
+            addItem={addTodolist}
+            title="+ Создать новую колонку"
+          ></AddItemForm>
         </div>
       </section>
     </div>
