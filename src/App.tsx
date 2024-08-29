@@ -11,7 +11,7 @@ export type TodolistType = {
   title: string;
   filter: FilterValuesType;
 };
-type TaskStateType = {
+export type TaskStateType = {
   [key: string]: Array<TaskType>;
 };
 
@@ -79,7 +79,7 @@ function App() {
     tasksObj[todolistId] = filteredTask;
     settasksObj({ ...tasksObj });
   }
-
+  // TodoList
   function removeTodoList(todolistId: string) {
     let filteredTask = todolists.filter((item) => item.id !== todolistId);
     setTodolists(filteredTask);

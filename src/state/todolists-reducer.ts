@@ -45,10 +45,11 @@ export const todolistsReducer = (
 
     default:
       throw new Error("i dont understand this action type");
+    // return [...state];
   }
 };
 
-export const RemoveTodoListAC = (
+export const removeTodoListAC = (
   todoListId: string
 ): RemoveTodoListActionType => {
   return {
@@ -56,13 +57,13 @@ export const RemoveTodoListAC = (
     id: todoListId,
   };
 };
-export const AddTodoListAC = (title: string): AddTodoListActionType => {
+export const addTodoListAC = (title: string): AddTodoListActionType => {
   return {
     type: "ADD_TODOLIST",
     title: title,
   };
 };
-export const ChangeTodoListTitleAC = (
+export const changeTodoListTitleAC = (
   todoListId: string,
   title: string
 ): ChangeTodoListTitleActionType => {
