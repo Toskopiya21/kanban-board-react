@@ -9,8 +9,8 @@ import { v1 } from "uuid";
 import { TodolistType } from "./../App";
 
 test("correct todolist should be removed", () => {
-  let todoListId1 = v1();
-  let todoListId2 = v1();
+  const todoListId1 = v1();
+  const todoListId2 = v1();
   const startState: Array<TodolistType> = [
     { id: todoListId1, title: "Задачи", filter: "all" },
     { id: todoListId2, title: "В работе", filter: "all" },
@@ -22,9 +22,9 @@ test("correct todolist should be removed", () => {
 });
 
 test("correct todolist should be added", () => {
-  let todoListId1 = v1();
-  let todoListId2 = v1();
-  let newTodoListTitle = "Ожидает проверки";
+  const todoListId1 = v1();
+  const todoListId2 = v1();
+  const newTodoListTitle = "Ожидает проверки";
 
   const startState: Array<TodolistType> = [
     { id: todoListId1, title: "Задачи", filter: "all" },
@@ -41,10 +41,10 @@ test("correct todolist should be added", () => {
 });
 
 test("correct todolist should change its name", () => {
-  let todoListId1 = v1();
-  let todoListId2 = v1();
+  const todoListId1 = v1();
+  const todoListId2 = v1();
 
-  let newTodoListTitle = "Ожидает проверки";
+  const newTodoListTitle = "Ожидает проверки";
 
   const startState: Array<TodolistType> = [
     { id: todoListId1, title: "Задачи", filter: "all" },

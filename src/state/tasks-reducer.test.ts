@@ -7,6 +7,7 @@ import {
   changeTaskTitleAC,
   removeTasksAC,
 } from "./tasks-reducer";
+import { addTodoListAC, removeTodoListAC } from "./todolists-reducer";
 
 let todoListId1 = v1();
 let todoListId2 = v1();
@@ -60,4 +61,29 @@ test("correct todolist should change its isDone", () => {
 
   expect(endState[todoListId1][1].isDone).toBeTruthy();
   expect(endState[todoListId2][1].isDone).toBeFalsy();
+});
+
+test("new property with new array should be added when new todolist is added", () => {
+  const action = addTodoListAC("title no matter");
+  const endState = tasksReducer(startState, action);
+  // возврат ключей todoListId1 и todoListId2
+  const keys = Object.keys(endState);
+
+  const newKey = keys.find((k) => k != todoListId1 && k != todoListId2);
+  if (!newKey) {
+    throw Error("new key should be added");
+  }
+  expect(keys.length).toBe(3);
+  expect(endState[newKey]).toEqual([]);
+});
+
+test("property with todolistId should be deleted", () => {
+  const action = removeTodoListAC(todoListId1);
+  const endState = tasksReducer(startState, action);
+
+  const keys = Object.keys(endState);
+
+  expect(keys.length).toBe(1);
+  // expect(endState[todoListId1]).not.toBeDefined();
+  expect(endState[todoListId1]).toBeUndefined();
 });
