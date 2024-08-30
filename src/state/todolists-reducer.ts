@@ -21,8 +21,19 @@ type ActionsTypes =
   | AddTodoListActionType
   | ChangeTodoListTitleActionType;
 
+export const todoListId1 = v1();
+export const todoListId2 = v1();
+export const todoListId3 = v1();
+export const todoListId4 = v1();
+
+const initialState: Array<TodolistType> = [
+  { id: todoListId1, title: "Задачи", filter: "all" },
+  { id: todoListId2, title: "В работе", filter: "all" },
+  { id: todoListId3, title: "Ожидает проверки", filter: "all" },
+  { id: todoListId4, title: "Готово", filter: "all" },
+];
 export const todolistsReducer = (
-  state: Array<TodolistType>,
+  state: Array<TodolistType> = initialState,
   action: ActionsTypes
 ): Array<TodolistType> => {
   switch (action.type) {
@@ -45,7 +56,7 @@ export const todolistsReducer = (
       return [...state];
 
     default:
-      throw new Error("i dont understand this action type");
+      return state;
     // return [...state];
   }
 };
