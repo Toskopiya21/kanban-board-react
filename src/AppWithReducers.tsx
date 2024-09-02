@@ -28,19 +28,19 @@ export type TaskStateType = {
 };
 
 function AppWithReducers() {
-  let todoListId1 = v1();
-  let todoListId2 = v1();
-  let todoListId3 = v1();
-  let todoListId4 = v1();
+  const todoListId1 = v1();
+  const todoListId2 = v1();
+  const todoListId3 = v1();
+  const todoListId4 = v1();
 
-  let [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducer, [
+  const [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducer, [
     { id: todoListId1, title: "Задачи", filter: "all" },
     { id: todoListId2, title: "В работе", filter: "all" },
     { id: todoListId3, title: "Ожидает проверки", filter: "all" },
     { id: todoListId4, title: "Готово", filter: "all" },
   ]);
 
-  let [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducer, {
+  const [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducer, {
     [todoListId1]: [
       { id: v1(), title: "Добавить прелоадер", isDone: false },
       { id: v1(), title: "Выполнить редизайн проекта", isDone: false },

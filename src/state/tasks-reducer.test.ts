@@ -1,6 +1,6 @@
 import { tasksReducer } from "./tasks-reducer";
 import { v1 } from "uuid";
-import { TaskStateType } from "./../App";
+import { TaskStateType } from "./../AppWithRedux";
 import {
   addTasksAC,
   changeTasksStatusAC,

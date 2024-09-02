@@ -1,12 +1,12 @@
-import { Button, Fab, Input } from "@mui/material";
+import { Button, Input } from "@mui/material";
 import { ChangeEvent, FocusEvent, KeyboardEvent, useState } from "react";
 import "./styles/app.scss";
 import "./styles/addItemForm.scss";
-import AddIcon from "@mui/icons-material/Add";
 
 export type AddItemFormPropsType = {
   addItem: (title: string) => void;
   title: string;
+  // addTask: (todoListId: string, title: string) => void;
   // children: React.ReactNode;
   // changeTaskTitle: (
   //   taskId: string,
@@ -16,17 +16,20 @@ export type AddItemFormPropsType = {
   //   id: string;
 };
 export function AddItemForm(props: AddItemFormPropsType) {
-  let [newTaskTitle, setNewTaskTitle] = useState<string>("");
+  const [newTaskTitle, setNewTaskTitle] = useState<string>("");
 
+  // @ts-expect-error @typescript-eslint/no-unused-vars 'error'
+  const [error, setError] = useState<string | null>(null);
+  const [textField, setTextField] = useState<boolean>(false);
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setNewTaskTitle(e.target.value);
   };
   const addItem = () => {
     setError(null);
-
     newTaskTitle.trim() !== ""
       ? props.addItem(newTaskTitle.trim())
       : setError("Title is required");
+    setNewTaskTitle("");
     setNewTaskTitle("");
   };
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -39,7 +42,6 @@ export function AddItemForm(props: AddItemFormPropsType) {
   };
   const handleOnBlur = (e: FocusEvent<HTMLDivElement, Element>) => {
     setError(null);
-    // console.log(e.target.value);
     const value = (e.target as HTMLInputElement).value;
     if (value) addItem();
     setTextField(false);
@@ -48,8 +50,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
     //   addItem();
     // }
   };
-  let [error, setError] = useState<string | null>(null);
-  let [textField, setTextField] = useState<boolean>(false);
+
   const addItemNew = () => {
     setTextField(true);
   };

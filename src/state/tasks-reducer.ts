@@ -1,12 +1,12 @@
 import { v1 } from "uuid";
-import { TaskStateType } from "./../App";
+import { TaskStateType } from "./../AppWithRedux";
 import {
   AddTodoListActionType,
   RemoveTodoListActionType,
-  todoListId1,
-  todoListId2,
-  todoListId3,
-  todoListId4,
+  // todoListId1,
+  // todoListId2,
+  // todoListId3,
+  // todoListId4,
 } from "./todolists-reducer";
 
 export type RemoveTasksActionType = {
@@ -40,13 +40,13 @@ type ActionsTypes =
   | AddTodoListActionType
   | RemoveTodoListActionType;
 const initialState = {
-  [todoListId1]: [
-    { id: v1(), title: "Добавить прелоадер", isDone: false },
-    { id: v1(), title: "Выполнить редизайн проекта", isDone: false },
-  ],
-  [todoListId2]: [],
-  [todoListId3]: [],
-  [todoListId4]: [],
+  // [todoListId1]: [
+  //   { id: v1(), title: "Добавить прелоадер", isDone: false },
+  //   { id: v1(), title: "Выполнить редизайн проекта", isDone: false },
+  // ],
+  // [todoListId2]: [],
+  // [todoListId3]: [],
+  // [todoListId4]: [],
 };
 export const tasksReducer = (
   state: TaskStateType = initialState,
@@ -70,11 +70,12 @@ export const tasksReducer = (
     }
     case "CHANGE_TASK_STATUS": {
       const stateCopy = { ...state };
-      const tasks = state[action.todoListId];
-      const task = tasks.find((t) => t.id === action.taskId);
-      if (task) {
-        task.isDone = action.isDone;
-      }
+      const tasks = stateCopy[action.todoListId];
+      stateCopy[action.todoListId] = tasks.map((t)=> t.id === action.taskId ? {...t, isDone: action.isDone}: t)
+      // const task = tasks.find((t) => t.id === action.taskId);
+      // if (task) {
+      //   task.isDone = action.isDone;
+      // }
       return stateCopy;
     }
     case "CHANGE_TASK_TITLE": {

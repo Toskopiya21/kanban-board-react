@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-import { TodolistType } from "./../App";
+import { TodolistType } from "./../AppWithRedux";
 
 export type RemoveTodoListActionType = {
   type: "REMOVE_TODOLIST";
@@ -21,16 +21,16 @@ type ActionsTypes =
   | AddTodoListActionType
   | ChangeTodoListTitleActionType;
 
-export const todoListId1 = v1();
-export const todoListId2 = v1();
-export const todoListId3 = v1();
-export const todoListId4 = v1();
+// export const todoListId1 = v1();
+// export const todoListId2 = v1();
+// export const todoListId3 = v1();
+// export const todoListId4 = v1();
 
 const initialState: Array<TodolistType> = [
-  { id: todoListId1, title: "Задачи", filter: "all" },
-  { id: todoListId2, title: "В работе", filter: "all" },
-  { id: todoListId3, title: "Ожидает проверки", filter: "all" },
-  { id: todoListId4, title: "Готово", filter: "all" },
+  // { id: todoListId1, title: "Задачи", filter: "all" },
+  // { id: todoListId2, title: "В работе", filter: "all" },
+  // { id: todoListId3, title: "Ожидает проверки", filter: "all" },
+  // { id: todoListId4, title: "Готово", filter: "all" },
 ];
 export const todolistsReducer = (
   state: Array<TodolistType> = initialState,
@@ -49,7 +49,7 @@ export const todolistsReducer = (
         },
       ];
     case "CHANGE_TODOLIST_TITLE":
-      let todolist = state.find((item) => item.id == action.id);
+      const todolist = state.find((item) => item.id == action.id);
       if (todolist) {
         todolist.title = action.title;
       }
@@ -57,7 +57,6 @@ export const todolistsReducer = (
 
     default:
       return state;
-    // return [...state];
   }
 };
 
