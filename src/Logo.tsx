@@ -1,8 +1,9 @@
-import React from "react";
+import "react";
 import "./styles/app.scss";
 import logoCheckbox from "./assets/logoCheckbox.svg";
+import React from "react";
 
-export default function Logo() {
+export const Logo = React.memo(() =>{
   return (
     <header className="header">
       <div className="logoTitle">
@@ -11,4 +12,4 @@ export default function Logo() {
       </div>
     </header>
   );
-}
+})

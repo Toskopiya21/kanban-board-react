@@ -45,16 +45,18 @@ export const todolistsReducer = (
         {
           id: action.id,
           title: action.title,
-          filter: "all",
         },
       ];
-    case "CHANGE_TODOLIST_TITLE":
-      const todolist = state.find((item) => item.id == action.id);
-      if (todolist) {
-        todolist.title = action.title;
-      }
-      return [...state];
+    case "CHANGE_TODOLIST_TITLE": {
+      const stateCopy = state.map((item) => {
+        if (item.id === action.id) {
+          return { ...item, title: action.title };
+        }
+        return item;
+      });
 
+      return stateCopy;
+    }
     default:
       return state;
   }

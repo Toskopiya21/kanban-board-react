@@ -1,28 +1,31 @@
 import { Input } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import {ChangeEvent, useCallback, useState} from "react";
+import * as React from "react";
 
 export type EditableSpanPropsType = {
   title: string;
   onChange: (newValue: string) => void;
-  edit: boolean;
 };
+export const EditableSpan = React.memo((props: EditableSpanPropsType) =>{
+  console.log("EditableSpan")
 
-export function EditableSpan(props: EditableSpanPropsType) {
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(props.title);
-  const activateEditMode = () => {
+
+  const activateEditMode = useCallback(() => {
     setEditMode(true);
-  };
-  const activateViewMode = () => {
+  }, [])
+
+  const activateViewMode = useCallback(() => {
     setEditMode(false);
     props.onChange(title);
-  };
+  }, [props.onChange])
 
-  const editTitle = (e: ChangeEvent<HTMLInputElement>) => {
+  const editTitle = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
-  };
+  }, [])
 
-  return editMode || props.edit ? (
+  return editMode ? (
     <Input
       defaultValue={title}
       onChange={editTitle}
@@ -33,4 +36,4 @@ export function EditableSpan(props: EditableSpanPropsType) {
   ) : (
     <span onDoubleClick={activateEditMode}>{title}</span>
   );
-}
+})

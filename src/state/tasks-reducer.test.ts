@@ -9,8 +9,8 @@ import {
 } from "./tasks-reducer";
 import { addTodoListAC, removeTodoListAC } from "./todolists-reducer";
 
-let todoListId1 = v1();
-let todoListId2 = v1();
+const todoListId1 = v1();
+const todoListId2 = v1();
 
 const startState: TaskStateType = {
   [todoListId1]: [
